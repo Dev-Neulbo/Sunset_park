@@ -1,0 +1,22 @@
+using UnityEngine;
+
+// 상호작용 가능한 오브젝트들의 부모 클래스
+// 태엽, 정수 버튼, 수도꼭지, 트램 장애물처럼 F키로 다룰 수 있는 것들이 이걸 상속한다.
+// PlayerInteraction이 이 클래스를 가진 오브젝트를 찾아 F키 입력 시 Interact()를 호출한다.
+public abstract class Interactable : MonoBehaviour
+{
+    [Header("Interactable Base")]
+    [Tooltip("지금 상호작용을 받을 수 있는 상태인지. 임시로 막고 싶을 때 끕니다.")]
+    [SerializeField] private bool interactable = true; // 상호작용 가능 여부
+
+    public bool IsInteractable => interactable; // 상호작용 가능 여부 읽기
+
+    // F키 입력 시 실행되는 동작. 각 오브젝트가 자기 방식대로 구현한다.
+    public abstract void Interact();
+
+    // 상호작용 가능 여부를 바꾼다
+    public void SetInteractable(bool value)
+    {
+        interactable = value;
+    }
+}
